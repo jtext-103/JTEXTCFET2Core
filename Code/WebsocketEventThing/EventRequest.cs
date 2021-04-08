@@ -6,7 +6,7 @@ using System.Text;
 namespace Jtext103.CFET2.WebsocketEvent
 {
     /// <summary>
-    /// this is the client send to the event server to subscrive the event
+    /// this is the client send to the event server to subscribe the event
     /// </summary>
     public class EventRequest:EventFilter
     {

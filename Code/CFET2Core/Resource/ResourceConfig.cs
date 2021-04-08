@@ -177,7 +177,7 @@ namespace Jtext103.CFET2.Core.Resource
             }
             if (actionImplementedBy(ConfigAction.Set) == null)
             {
-                throw new BadThingImplementaionException("Config: " + Name + " missing Set implementation");
+                    throw new BadThingImplementaionException("Config: " + Name + " missing Set implementation");
             }
         }
 

@@ -36,8 +36,8 @@ namespace Jtext103.CFET2.CFET2App
             //you can add Thing by coding here
 
             //------------------------------Custom View------------------------------//
-            //var customView = new CustomViewThing();
-            // MyHub.TryAddThing(customView, "/", "customView", "./CustomView");
+            var customView = new CustomViewThing();
+            MyHub.TryAddThing(customView, "/", "customView", "./CustomView");
 
             //you can add Thing by coding here
 

@@ -61,6 +61,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
 
         public override ISample TryInvokeSampleResourceWithUri(string requestUri, Dictionary<string, object> inputDict)
         {
+            System.Boolean a = false;
             return HTTPRequest("PUT", requestUri, inputDict, null);
         }
 

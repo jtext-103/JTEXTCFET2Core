@@ -19,6 +19,9 @@ using System.Text.RegularExpressions;
 using Nancy.Conventions;
 using MessagePack;
 using Nancy.Configuration;
+using Nancy.TinyIoc;
+using Nancy.Bootstrapper;
+using System.Net;
 
 namespace Jtext103.CFET2.NancyHttpCommunicationModule
 {
@@ -27,7 +30,9 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
     {
         public override void Configure(INancyEnvironment environment)
         {
+            
             environment.Json(retainCasing: true);
+            
             base.Configure(environment);
         }
     }
@@ -62,6 +67,19 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
             });
 
         }
+        //public string GetLocalIp()
+        //{
+        //    ///获取本地的IP地址
+        //    string AddressIP = string.Empty;
+        //    foreach (IPAddress _IPAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+        //    {
+        //        if (_IPAddress.AddressFamily.ToString() == "InterNetwork")
+        //        {
+        //            AddressIP = _IPAddress.ToString();
+        //        }
+        //    }
+        //    return AddressIP;
+        //}
 
         private object GetResponse(AccessAction action, bool shouldReturnView = false)
         {
@@ -102,13 +120,13 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                 catch (ResourceDoesNotExistException e)
                 {
                     var response = new NotFoundResponse();
-                    response.StatusCode = HttpStatusCode.NotFound;
+                    response.StatusCode = Nancy.HttpStatusCode.NotFound;
                     return response;
                 }
                 catch (Exception e)
                 {
                     var response = new NotFoundResponse();
-                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.StatusCode = Nancy.HttpStatusCode.BadRequest;
                     return response;
                 }
 
@@ -117,6 +135,12 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                     //var serializer = MessagePackSerializer.Get<Dictionary<string, object>>();
                     MemoryStream stream = new MemoryStream();
                     result.Context["CFET2CORE_SAMPLE_ISREMOTE"] = true;
+
+                    if (this.Request.Headers.Referrer != "")
+                    {
+                        result.Context["CFET2CORE_SAMPLE_PATH"] = this.Request.Url;
+                    }
+
                     try
                     {
                         MessagePackSerializer.Serialize(stream, result.Context, MessagePack.Resolvers.ContractlessStandardResolver.Options);
@@ -128,13 +152,24 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                     //serializer.Pack(stream, result.Context);
                     SetData(stream);
                     var rightResponse = new Nancy.Responses.StreamResponse(GetData, "application/octet-stream");
+                    rightResponse.Headers.Add(new KeyValuePair<string, string>("Access-Control-Allow-Origin", "*"));
+                    rightResponse.Headers.Add(new KeyValuePair<string, string>("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, PATCH, DELETE"));
+                    rightResponse.Headers.Add(new KeyValuePair<string, string>("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Authorization , Access-Control-Request-Headers"));
                     rightResponse.Headers.Add(new KeyValuePair<string, string>("Content-Encoding", "MessagePack"));
-                    rightResponse.Headers.Add(new KeyValuePair<string, string>("Content-Type", "application/MessagePack"));
+                    //rightResponse.Headers.Add(new KeyValuePair<string, string>("Content-Type", "application/MessagePack"));
+                    rightResponse.Headers.Add(new KeyValuePair<string, string>("Content-Type", "application/x-www-from-urlencoded;charset=UTF-8"));
+
+
+
                     return rightResponse;
                 }
                 else
                 {
                     result.Context["CFET2CORE_SAMPLE_ISREMOTE"] = true;
+                    if (this.Request.Headers.Referrer != "")
+                    {
+                        result.Context["CFET2CORE_SAMPLE_PATH"] = this.Request.Url.ToString();
+                    }
                     try
                     {
                         //var rightResponse = JsonConvert.SerializeObject(result.Context, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
