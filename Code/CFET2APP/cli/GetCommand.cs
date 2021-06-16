@@ -41,6 +41,7 @@ namespace Jtext103.CFET2.CFET2App.cli
         {
             
             var path = MySession.CurrentPath;
+            
             if (Path.Count==1)
             {
                 path = Path.Single();
@@ -61,6 +62,7 @@ namespace Jtext103.CFET2.CFET2App.cli
                 realInputDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(InputDict);
             }
             ISample result = null;
+
             if (realInputDict != null)
             {
                 //result = MyHub.TryGetResourceSampleWithUri(path, realInputDict);

@@ -49,16 +49,17 @@ namespace Jtext103.CFET2.Core.Event
         /// <param name="eventType">IgnoreCase</param>
         public EventFilter(string resource, string eventType):base()
         {
-            if(resource.ToLower().StartsWith("http:"))
+            if (resource.ToLower().StartsWith("http:"))
             {
                 int index = resource.IndexOf('/', 7);
-                if(index == -1)
+                if (index == -1)
                 {
                     Host = resource;
                 }
                 else
                 {
                     Host = resource.Substring(0, index);
+                    resource = resource.Substring(index, resource.Length - index);
                 }
                 //change http uri to ws uri  
                 //replace http://...:port with ws://...:port+1
@@ -95,11 +96,11 @@ namespace Jtext103.CFET2.Core.Event
         /// <param name="eventType">IgnoreCase</param>
         /// <param name="performanceLevel"></param>
         /// <param name="host">the remote host incluting protocol</param>
-        //public EventFilter(string resource, string eventType,int performanceLevel,string host):this(resource, eventType)
-        //{
-        //    Host = host;
-        //    PerformanceLevel = performanceLevel;
-        //}
+        public EventFilter(string resource, string eventType, int performanceLevel, string host) : this(resource, eventType)
+        {
+            Host = host;
+            PerformanceLevel = performanceLevel;
+        }
 
         /// <summary>
         /// 

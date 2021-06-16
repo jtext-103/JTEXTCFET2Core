@@ -138,7 +138,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
 
                     if (this.Request.Headers.Referrer != "")
                     {
-                        result.Context["CFET2CORE_SAMPLE_PATH"] = this.Request.Url;
+                        result.Context["CFET2CORE_SAMPLE_PATH"] = this.Request.Url.ToString().Split('?')[0];
                     }
 
                     try
@@ -168,7 +168,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                     result.Context["CFET2CORE_SAMPLE_ISREMOTE"] = true;
                     if (this.Request.Headers.Referrer != "")
                     {
-                        result.Context["CFET2CORE_SAMPLE_PATH"] = this.Request.Url.ToString();
+                        result.Context["CFET2CORE_SAMPLE_PATH"] = this.Request.Url.ToString().Split('?')[0];
                     }
                     try
                     {

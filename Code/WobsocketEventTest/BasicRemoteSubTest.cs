@@ -27,7 +27,7 @@ namespace Jtext103.CFET2.WebsocketEvent.Test
             MyHub.TryAddThing(testThing, @"/", "EventTest");
 
             remoteHub = new WebsocketEventThing();
-            MyHub.TryAddThing(remoteHub, @"/", "WsEvent", new WebsocketEventConfig { Host =host});
+            MyHub.TryAddThing(remoteHub, @"/", "WsEvent", host);
             MyHub.EventHub.RemoteEventHubs.Add(remoteHub);
             MyHub.StartThings();
             results = new List<Guid>();
@@ -47,11 +47,11 @@ namespace Jtext103.CFET2.WebsocketEvent.Test
         public void ShouldPusblshAndHandleAndUnsubscribeRemoteEvent()
         {
             
-            var token1 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/[0-9]{0,}$", EventFilter.DefaultEventType, 1, host),
+            var token1 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/[0-9]{0,}$", EventFilter.DefaultEventType, 1),
                 eventHandler);
-            var token2 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/2", EventFilter.DefaultEventType, 0, host),
+            var token2 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/2", EventFilter.DefaultEventType, 0),
                 eventHandler);
-            MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/2", EventFilter.DefaultEventType, 0, "ws://127.0.0.1:8082"),
+            MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/2", EventFilter.DefaultEventType, 0),
                 eventHandler);
             Debug.WriteLine("main sent subscribes");
             Thread.Sleep(3000);
@@ -76,7 +76,7 @@ namespace Jtext103.CFET2.WebsocketEvent.Test
         [TestMethod]
         public void ShouldRecieveHeavyPayload()
         {
-            var token1 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtestHeavy/[0-9]{0,}$", EventFilter.DefaultEventType, 1, host),
+            var token1 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtestHeavy/[0-9]{0,}$", EventFilter.DefaultEventType, 1),
                eventHandlerHeavy);
             
             Debug.WriteLine("main sent subscribes");

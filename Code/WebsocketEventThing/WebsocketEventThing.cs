@@ -27,9 +27,34 @@ namespace Jtext103.CFET2.WebsocketEvent
 
         public override void TryInit(object initObj)
         {
-            Config = (WebsocketEventConfig)initObj;
-            logger = Cfet2LogManager.GetLogger("WsEvent@"+ Path);
+            Config = new WebsocketEventConfig(ChangetoWS(initObj.ToString()));
+            logger = Cfet2LogManager.GetLogger("WsEvent@" + Path);
             WebsocketEventHandler.ParentThing = this;
+        }
+
+        public string ChangetoWS(string resource)
+        {
+            string host;
+            if (resource.ToLower().StartsWith("http:"))
+            {
+                int index = resource.IndexOf('/', 7);
+                if (index == -1)
+                {
+                    host = resource;
+                }
+                else
+                {
+                    host = resource.Substring(0, index);
+                }
+                //change http uri to ws uri  
+                //replace http://...:port with ws://...:port+1
+                //eg: http://127.0.0.1:8001 to ws://127.0.0.1:8002
+                host = host.ToLower().Replace("http", "ws");
+                string lastchar = (int.Parse(host.Substring(host.Length - 1)) + 1).ToString();
+                host = host.Substring(0, (host.Length - 1)) + lastchar;
+                return host;
+            }
+            return resource;
         }
 
         public override void Start()

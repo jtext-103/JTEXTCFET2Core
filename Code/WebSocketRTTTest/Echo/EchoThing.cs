@@ -40,7 +40,7 @@ namespace WebSocketRTTTest
         {
             for(int i = channelStart; i < channelCount; i++)
             {
-                MyHub.EventHub.Subscribe(new EventFilter(@"/sender/idtest/" + i.ToString(), EventFilter.DefaultEventType, eventLevel, host), eventHandler);
+                MyHub.EventHub.Subscribe(new EventFilter(@"/sender/idtest/" + i.ToString(), EventFilter.DefaultEventType, eventLevel), eventHandler);
                 //MyHub.EventHub.Subscribe(new EventFilter(@"/sender/idtest/" + i.ToString(), EventFilter.DefaultEventType), eventHandler);
             }
         }

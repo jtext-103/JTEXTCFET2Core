@@ -45,7 +45,7 @@ namespace WebSocketRTTTest
         {
             foreach (var s in host)
             {
-                MyHub.EventHub.Subscribe(new EventFilter(@"/echo/callback", EventFilter.DefaultEventType, eventLevel, s), eventHandler);
+                MyHub.EventHub.Subscribe(new EventFilter(@"/echo/callback", EventFilter.DefaultEventType, eventLevel), eventHandler);
             }
             //MyHub.EventHub.Subscribe(new EventFilter(@"/echo/callback", EventFilter.DefaultEventType), eventHandler);
         }
