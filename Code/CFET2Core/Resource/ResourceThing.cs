@@ -1,5 +1,6 @@
 ﻿using Jtext103.CFET2.Core.Attributes;
 using Jtext103.CFET2.Core.Exception;
+using Jtext103.CFET2.Core.Log;
 using Jtext103.CFET2.Core.Sample;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Jtext103.CFET2.Core.Resource
     {
         private Dictionary<MemberInfo,Cfet2AttributeBase> thingMembers=new Dictionary<MemberInfo, Cfet2AttributeBase>();
 
-
+        private ICfet2Logger logger = Cfet2LogManager.GetLogger("ResourceThing");
         /// <summary>
         /// holds the instance of a thing, it's publuc get yet, todo: make access control of it
         /// all the resource must be related to a thing
@@ -56,6 +57,7 @@ namespace Jtext103.CFET2.Core.Resource
             ProbeTheThing();
             theThing.ConfigFilePath = thingConfigPath;
             theThing.TryInit(initObject);
+            logger.Info("tryinit:"+name);
         }
 
 

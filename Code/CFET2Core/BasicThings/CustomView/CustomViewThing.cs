@@ -19,10 +19,11 @@ namespace Jtext103.CFET2.Core.BasicThings
     public class CustomViewThing : Thing
     {
         private CustomViewConfig myConfig;
-
+        private ICfet2Logger logger;
         public override void TryInit(object dirPath)
         {
             myConfig = new CustomViewConfig((string)dirPath);
+            logger = Cfet2LogManager.GetLogger("CustomView");
         }
 
         [Cfet2Status]
@@ -36,6 +37,7 @@ namespace Jtext103.CFET2.Core.BasicThings
                     try
                     {
                         string fullFilePath = myConfig.DirPath + System.IO.Path.DirectorySeparatorChar + r.Value;
+                        logger.Info(fullFilePath);
                         return File.ReadAllText(fullFilePath, Encoding.Default);
                     }
                     catch

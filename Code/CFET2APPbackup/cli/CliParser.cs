@@ -65,7 +65,7 @@ namespace Jtext103.CFET2.CFET2App.cli
                                    ? element.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)  // Split the item
                                    : new string[] { element })  // Keep the entire item
              .SelectMany(element => element).ToList();
-                return result.ToArray();
+            return result.ToArray();
         }
 
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30320.27
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CFET2Core", "CFET2Core\CFET2Core.csproj", "{E4BD3DE4-5F65-409D-A99A-7D9DB54BF122}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebsocketEventThing", "WebsocketEventThing\WebsocketEventThing.csproj", "{7466D2C7-6264-43F0-98BD-BDE4BB9D4D04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSocketRTTTest", "WebSocketRTTTest\WebSocketRTTTest.csproj", "{09826117-4190-49A4-943C-7AE500D5B7EE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WobsocketEventTest", "WobsocketEventTest\WobsocketEventTest.csproj", "{8DB6FADA-FCF6-450E-BAD5-F8D8EA49EB57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +45,6 @@ Global
 		{09826117-4190-49A4-943C-7AE500D5B7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09826117-4190-49A4-943C-7AE500D5B7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09826117-4190-49A4-943C-7AE500D5B7EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DB6FADA-FCF6-450E-BAD5-F8D8EA49EB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DB6FADA-FCF6-450E-BAD5-F8D8EA49EB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DB6FADA-FCF6-450E-BAD5-F8D8EA49EB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DB6FADA-FCF6-450E-BAD5-F8D8EA49EB57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

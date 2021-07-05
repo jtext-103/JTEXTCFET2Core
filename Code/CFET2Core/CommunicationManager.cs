@@ -1,4 +1,5 @@
 ﻿using Jtext103.CFET2.Core.Communication;
+using Jtext103.CFET2.Core.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Jtext103.CFET2.Core
     {
 
         Dictionary<string, CommunicationModule> moduleDict = new Dictionary<string, CommunicationModule>(StringComparer.InvariantCultureIgnoreCase);
-
+        public ICfet2Logger logger = Cfet2LogManager.GetLogger("CommunicationManager");
         /// <summary>
         /// return the communication module for the protocol
         /// </summary>
@@ -43,6 +44,7 @@ namespace Jtext103.CFET2.Core
             foreach (var item in moduleDict.Values)
             {
                 item.Start();
+                logger.Info(item.ProtocolNames + " comnunication module started.");
             }
         }
     }

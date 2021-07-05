@@ -22,6 +22,7 @@ using Nancy.Configuration;
 using Nancy.TinyIoc;
 using Nancy.Bootstrapper;
 using System.Net;
+using Jtext103.CFET2.Core.Log;
 
 namespace Jtext103.CFET2.NancyHttpCommunicationModule
 {
@@ -40,7 +41,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
     public class RequestModule : NancyModule
     {
         //private ViewSelector viewSelector = new ViewSelector();
-
+        private ICfet2Logger logger = Cfet2LogManager.GetLogger("NancyModule");
         string viewPath = "/views/index.html";
         string windowsPath = "/views/WindowsAppIndex.html";
 
@@ -106,6 +107,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                 {
                     hashTag = viewPath + "#" + requestPath + queryString;
                 }
+                logger.Info("isFromBrowser:" + hashTag);
                 return Response.AsRedirect(hashTag, Nancy.Responses.RedirectResponse.RedirectType.Permanent);
             }
             else
@@ -160,7 +162,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                     rightResponse.Headers.Add(new KeyValuePair<string, string>("Content-Type", "application/x-www-from-urlencoded;charset=UTF-8"));
 
 
-
+                    logger.Info("NotFromBrowserMessagePack:" + result.Context["CFET2CORE_SAMPLE_PATH"]);
                     return rightResponse;
                 }
                 else
@@ -177,6 +179,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                         rightResponse.ContentType = "application/json; charset=utf-8";
                         //Response test = Response.AsJson(result.Context);
                         //return Response.AsText(rightResponse);
+                        logger.Info("NotFromBrowserJson:" + result.Context["CFET2CORE_SAMPLE_PATH"]);
                         return rightResponse;
                     }
                     catch (Exception e)

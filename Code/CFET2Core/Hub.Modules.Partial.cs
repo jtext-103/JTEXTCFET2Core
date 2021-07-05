@@ -43,6 +43,7 @@ namespace Jtext103.CFET2.Core
         public void TryAddCommunicationModule(CommunicationModule communicationModule)
         {
             myMaster.MyCommunicationManager.TryAddCommunicationModule(communicationModule);
+            logger.Info(communicationModule.ProtocolNames.ToString() + " CommunicationModule added.");
         }
 
 
@@ -130,6 +131,7 @@ namespace Jtext103.CFET2.Core
                 if (thing.ResourceType == ResourceTypes.Thing)
                 {
                     (thing as ResourceThing).TheThing.Start();
+                    logger.Info(thing.Name.ToString() + " Started.");
                 }
             }
             addThing(new RootThing(), "/", "root", null, true);

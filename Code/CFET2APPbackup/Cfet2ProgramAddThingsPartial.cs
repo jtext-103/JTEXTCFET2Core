@@ -12,8 +12,6 @@ using Nancy;
 using Jtext103.CFET2.Core.Middleware.Basic;
 using Jtext103.CFET2.CFET2App.DynamicLoad;
 using Jtext103.CFET2.Core.Config;
-using Jtext103.CFET2.WebsocketEvent;
-
 namespace Jtext103.CFET2.CFET2App
 {
     public partial class Cfet2Program : CFET2Host
@@ -32,22 +30,22 @@ namespace Jtext103.CFET2.CFET2App
             var nancyCM = new NancyCommunicationModule(GlobalConfig.HostUri, GlobalConfig.Accept);
             MyHub.TryAddCommunicationModule(nancyCM);
 
+            //If you don't want dynamic load things, please comment out the line below
+            var loader = new DynamicThingsLoader(this);
+
             //you can add Thing by coding here
 
             //------------------------------Custom View------------------------------//
             var customView = new CustomViewThing();
             MyHub.TryAddThing(customView, "/", "customView", "./CustomView");
 
-            var remoteHub = new WebsocketEventThing();
-            MyHub.TryAddThing(remoteHub, @"/", "WsEvent", GlobalConfig.HostUri);
-            MyHub.EventHub.RemoteEventHubs.Add(remoteHub);
+            //you can add Thing by coding here
 
-            //If you don't want dynamic load things, please comment out the line below
-            var loader = new DynamicThingsLoader(this);
+            //var fakeAI = new FakeAIThing();
+            // MyHub.TryAddThing(fakeAI, "/", "fakeCard", 16);
 
-            //var fakeai = new FakeAIThing();
-            //MyHub.TryAddThing(fakeai, "/", "fakeai", 16);
-
+            //var remoteRequester = new RemoteRequester();
+            //MyHub.TryAddThing(remoteRequester, "/", "remote");
         }
     }
 }

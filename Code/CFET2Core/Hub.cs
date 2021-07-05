@@ -11,6 +11,7 @@ using Jtext103.CFET2.Core.Extension;
 using Jtext103.CFET2.Core.Communication;
 using Jtext103.CFET2.Core.Event;
 using Jtext103.CFET2.Core.Middleware;
+using Jtext103.CFET2.Core.Log;
 
 namespace Jtext103.CFET2.Core
 {
@@ -19,6 +20,7 @@ namespace Jtext103.CFET2.Core
     /// </summary>
     public partial class Hub
     {
+        public ICfet2Logger logger = Cfet2LogManager.GetLogger("Hub");
         internal Hub(CFET2Module module)
         {
             //todo depending on the module types disable some function of the hub

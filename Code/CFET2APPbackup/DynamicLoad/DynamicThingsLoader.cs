@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Autofac;
 using System.Reflection;
 using Jtext103.CFET2.Core;
-using Jtext103.CFET2.Core.Log;
 
 namespace Jtext103.CFET2.CFET2App.DynamicLoad
 {
@@ -30,9 +29,6 @@ namespace Jtext103.CFET2.CFET2App.DynamicLoad
         private string thingDllPath = "./thingDll";
 
         private string thingConfigPath = "./thingConfig";
-
-        private ICfet2Logger logger = Cfet2LogManager.GetLogger("DynamicLoad");
-
         public DynamicThingsLoader(Cfet2Program host)
         {
             cfetHost = host;
@@ -188,7 +184,7 @@ namespace Jtext103.CFET2.CFET2App.DynamicLoad
                     //type.GetType();
                     //添加配置文件路径
                     cfetHost.MyHub.TryAddThing(ins, thing.MountPath, thing.Name,thing.Config.InitObj,thingConfigPath);
-                    logger.Info("AddThing:"+ thing.Name);
+
                 }
                 catch (Exception e)
                 {

@@ -15,16 +15,10 @@
     <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Nancy.Hosting.Self" Version="2.0.0" />
     <PackageReference Include="Nancy.Viewengines.Razor" Version="2.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="NLog" Version="4.7.4" />
     <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="4.7.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <PackageReference Include="Microsoft.NETCore.App">
-      <Version>2.2.8</Version>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,19 +26,10 @@
     <ProjectReference Include="..\NancyHttpCommunicationModule\NancyHttpCommunicationModule.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="MessagePack">
-      <HintPath>dll\MessagePack.dll</HintPath>
-    </Reference>
-    <Reference Include="MessagePack.Annotations">
-      <HintPath>dll\MessagePack.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket">
-      <HintPath>dll\websocket.dll</HintPath>
-    </Reference>
-    <Reference Include="WebsocketEventThing">
-      <HintPath>dll\WebsocketEventThing.dll</HintPath>
-    </Reference>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="Microsoft.NETCore.App">
+      <Version>2.2.8</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

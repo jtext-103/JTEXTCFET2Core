@@ -22,12 +22,12 @@ namespace Jtext103.CFET2.WebsocketEvent.Test
         [TestInitialize]
         public void init()
         {
-            HubMaster.InjectHubToModule(this);
+             HubMaster.InjectHubToModule(this);
             testThing = new EventTestThing();
             MyHub.TryAddThing(testThing, @"/", "EventTest");
 
             remoteHub = new WebsocketEventThing();
-            MyHub.TryAddThing(remoteHub, @"/", "WsEvent", new WebsocketEventConfig { Host = host });
+            MyHub.TryAddThing(remoteHub, @"/", "WsEvent", host);
             MyHub.EventHub.RemoteEventHubs.Add(remoteHub);
             MyHub.StartThings();
             results = new List<Guid>();
@@ -42,14 +42,13 @@ namespace Jtext103.CFET2.WebsocketEvent.Test
             Hub.KillMaster();
         }
 
-
         [TestMethod]
         public void ShouldPusblshAndHandleAndUnsubscribeRemoteEvent()
         {
 
-            var token1 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/[0-9]{0,}$", EventFilter.DefaultEventType, 1, host),
+            var token1 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/[0-9]{0,}$", EventFilter.DefaultEventType, 1),
                 eventHandler);
-            var token2 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/2", EventFilter.DefaultEventType, 0, host),
+            var token2 = MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/2", EventFilter.DefaultEventType, 0),
                 eventHandler);
             MyHub.EventHub.Subscribe(new EventFilter(@"/EventTest/idtest/2", EventFilter.DefaultEventType, 0, "ws://127.0.0.1:8082"),
                 eventHandler);
@@ -69,8 +68,6 @@ namespace Jtext103.CFET2.WebsocketEvent.Test
                 results[1].Should().Be(id);
                 results[2].Should().Be(id2);
             }
-
-
         }
 
         [TestMethod]
