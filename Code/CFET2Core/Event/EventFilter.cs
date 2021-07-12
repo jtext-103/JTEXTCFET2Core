@@ -68,6 +68,16 @@ namespace Jtext103.CFET2.Core.Event
                 string lastchar = (int.Parse(Host.Substring(Host.Length - 1)) + 1).ToString();
                 Host = Host.Substring(0, (Host.Length - 1)) + lastchar;
             }
+            else if(resource.ToLower().StartsWith("ws:"))
+            {
+                int index = resource.IndexOf('/', 5);
+                if (index == -1) Host = resource;
+                else
+                {
+                    Host = resource.Substring(0, index);
+                    resource = resource.Substring(index, resource.Length - index);
+                }
+            }
             SourcesAndTypes.Add(new SourceAndTypeFilter { Source=resource,EventType=eventType});
             (resourceRegexMatches, eventTypeRegexMatches) = makeRegexFilter(SourcesAndTypes);
 
