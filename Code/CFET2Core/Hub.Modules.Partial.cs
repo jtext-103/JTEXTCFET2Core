@@ -43,7 +43,6 @@ namespace Jtext103.CFET2.Core
         public void TryAddCommunicationModule(CommunicationModule communicationModule)
         {
             myMaster.MyCommunicationManager.TryAddCommunicationModule(communicationModule);
-            logger.Info(communicationModule.ProtocolNames.ToString() + " CommunicationModule added.");
         }
 
 

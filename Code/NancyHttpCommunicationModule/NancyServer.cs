@@ -27,6 +27,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
         public void Start()
         {
             Task.Run(() => serverLoop());
+            logger.Info("NancyTaskRun ");
         }
 
         public void serverLoop()
