@@ -82,7 +82,7 @@ namespace Jtext103.CFET2.Core.Event
             (resourceRegexMatches, eventTypeRegexMatches) = makeRegexFilter(SourcesAndTypes);
 
         }
-
+         
         public EventFilter(string resource, string eventType, int performanceLevel) : this(resource, eventType)
         {
             PerformanceLevel = performanceLevel;
