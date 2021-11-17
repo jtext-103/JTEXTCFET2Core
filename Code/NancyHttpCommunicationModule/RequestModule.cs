@@ -106,6 +106,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
                 else
                 {
                     hashTag = viewPath + "#" + requestPath + queryString;
+                    logger.Info("return index.html");
                 }
                 return Response.AsRedirect(hashTag, Nancy.Responses.RedirectResponse.RedirectType.Permanent);
             }
