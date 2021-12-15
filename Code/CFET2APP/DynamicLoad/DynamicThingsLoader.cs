@@ -166,7 +166,7 @@ namespace Jtext103.CFET2.CFET2App.DynamicLoad
                 }
                 catch (Exception e)
                 {
-                    throw new Exception(e.ToString());
+                    throw new Exception(e.ToString()+" "+ dll.ToString());
                 }
 
                 foreach (var type in types)
