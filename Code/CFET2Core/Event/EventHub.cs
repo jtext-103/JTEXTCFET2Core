@@ -40,7 +40,8 @@ namespace Jtext103.CFET2.Core.Event
         public void Init()
         {
             cancelToken = tokenSource.Token;
-            Task.Run(() => eventHandleLoop(), cancelToken);
+            //Task.Run(() => eventHandleLoop(), cancelToken);
+            Task.Factory.StartNew(() => eventHandleLoop(), cancelToken,TaskCreationOptions.LongRunning, TaskScheduler.Default);
         }
 
         /// <summary>

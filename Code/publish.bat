@@ -1,1 +1,1 @@
-dotnet publish -f netcoreapp2.1
+dotnet publish -f net6.0 -r linux-x64 --configuration Release --no-self-contained

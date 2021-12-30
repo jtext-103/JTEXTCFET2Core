@@ -1,0 +1,11 @@
+{
+	"RegularMatches":
+	{
+		"PP[0-9]*":"PP.json",
+                "GC":"GC.json",
+                "CC":"CC.json",
+                "DT[0-9]*":"DT.json",
+                "FSC":"FSC.json",
+                "HFRC":"hfrc.json"
+	}
+}
