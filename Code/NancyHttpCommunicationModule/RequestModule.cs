@@ -93,6 +93,7 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
             {
                 string requestPath = this.Request.Url.Path;
                 string queryString = this.Request.Url.Query.ToString();
+
                 string hashTag;
                 if (requestPath.Contains("WindowsAppIndex"))
                 {

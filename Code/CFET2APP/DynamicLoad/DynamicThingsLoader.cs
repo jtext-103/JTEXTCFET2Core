@@ -19,13 +19,13 @@ namespace Jtext103.CFET2.CFET2App.DynamicLoad
 
         private string separator;
 
-        private List<ThingModel> thingModels;
-
-        private List<string> thingDlls;
-
         private Cfet2Program cfetHost;
 
         Dictionary<string, Type> dllsDic = new Dictionary<string, Type>();
+
+        private List<ThingModel> thingModels;
+
+        private List<string> thingDlls;
 
         private string thingDllPath = "./thingDll";
 
@@ -38,18 +38,17 @@ namespace Jtext103.CFET2.CFET2App.DynamicLoad
             cfetHost = host;
 
             separator = Path.DirectorySeparatorChar.ToString();
-            //dynamicThingsRootPath = "." + separator + "DynamicLoad" + separator + "DynamicThing";
-            //dynamicDllsFilePath = "." + separator + "DynamicLoad" + separator + "DynamicDll";
 
             thingModels = new List<ThingModel>();
             thingDlls = new List<string>();
 
+            //加载所有thing的配置到thingModels
             LoadAllThings(thingConfigPath);
-
+            //遍历并拷贝所有dll到执行目录
             LoadAndCopyDllsInDir(thingDllPath);
-
+            //添加执行目录下的所有dll到thingDlls
             SetDlls();
-
+            //加载所有dll，将所有Thing实例化并挂载到CFET Hub
             AddAllThings();
         }
 
@@ -122,7 +121,6 @@ namespace Jtext103.CFET2.CFET2App.DynamicLoad
                 }
             }
         }
-
 
         //将所有Thing实例化并挂载到CFET
         private void AddAllThings() 
