@@ -20,7 +20,6 @@ namespace Jtext103.CFET2.NancyHttpCommunicationModule
 
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
-
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/views"));
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/css","/views/css"));
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/js", "/views/js"));

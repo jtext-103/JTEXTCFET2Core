@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.8</Version>
-    <Description>add TaskCreationOptions.LongRunning</Description>
+    <Version>1.0.9</Version>
+    <Description>修改了来自浏览器请求的返回路径</Description>
   </PropertyGroup>
 
   <ItemGroup>
